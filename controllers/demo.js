@@ -1,5 +1,5 @@
 const query = require("../utils/db");
-
+const knex = require('../utils/knex')
 module.exports = {
   /**
    * 简单demo测试
@@ -16,7 +16,8 @@ module.exports = {
    * @param {*} ctx
    */
   async get(ctx) {
-    ctx.body = ctx.request.query;
+    const data = await knex('commodity').where('id',1).where({name: 'dmo'}).first();
+    ctx.body = data;
   },
 
   /**
